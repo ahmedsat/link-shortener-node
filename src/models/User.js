@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     type: [String],
     enum: {
       values: ["p1", "p2"],
-      message: "{VALUE} is not supported",
+      message: "{VALUE} is not supported ",
     },
   },
 });
