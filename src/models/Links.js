@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
 const LinkSchema = new mongoose.Schema({
-  URL: URL,
+  // URL: URL,
   short: { type: String },
 });
 
