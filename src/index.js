@@ -6,6 +6,7 @@ const express = require("express");
 const connectDB = require("./database/connect");
 const userRouter = require("./routers/users");
 const linksRouter = require("./routers/links");
+const authenticationsMiddleware = require("./middleware/auth");
 
 const app = express();
 
@@ -16,6 +17,8 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 // pre-routes middleware
 
 app.use(express.json());
+app.use(authenticationsMiddleware);
+
 // extra packages
 
 // routes
