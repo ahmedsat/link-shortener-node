@@ -1,5 +1,7 @@
+// general requirements
 require("dotenv").config();
 require("express-async-errors");
+
 const express = require("express");
 const connectDB = require("./database/connect");
 const userRouter = require("./routers/users");
@@ -11,6 +13,8 @@ const app = express();
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
+// pre-routes middleware
+
 app.use(express.json());
 // extra packages
 
@@ -18,10 +22,7 @@ app.use(express.json());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/link", linksRouter);
 
-// app.get("/", (req, res) => {
-//   res.redirect("http://google.com");
-// });
-
+// post-routes middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
