@@ -22,6 +22,16 @@ app.use(express.json());
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/link", linksRouter);
 
+// redirection route
+app.get("/:short", async (req, res) => {
+  const { StatusCodes } = require("http-status-codes");
+  const Link = require("./models/Links");
+
+  const link = await Link.findOne({ short: req.params.short }, "URL");
+  if (!link) res.status(StatusCodes.NOT_FOUND).send("NOT FOUND");
+  res.status(StatusCodes.OK).send(link.URL);
+});
+
 // post-routes middleware
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
