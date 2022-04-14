@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
       values: ["p1", "p2"],
       message: "{VALUE} is not supported ",
     },
+    default: [],
   },
 });
 
