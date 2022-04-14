@@ -8,9 +8,16 @@ const createLink = async (req, res) => {
 };
 
 const getAllLinks = async (req, res) => {
-  console.log("test");
-  const links = await Link.find({});
-  res.status(StatusCodes.OK).json({ links });
+  if (!req.user)
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .json("UNAUTHORIZED, please login");
+  const links = await Link.find({ owner: req.user.id });
+  if (!links)
+    return res
+      .status(StatusCodes.OK)
+      .json("no links yet, add links to see here");
+  return res.status(StatusCodes.OK).json({ links });
 };
 
 const getOneLink = async (req, res) => {
