@@ -29,7 +29,7 @@ app.get("/:short", async (req, res) => {
 
   const link = await Link.findOne({ short: req.params.short }, "URL");
   if (!link) res.status(StatusCodes.NOT_FOUND).send("NOT FOUND");
-  res.status(StatusCodes.OK).send(link.URL);
+  res.status(StatusCodes.OK).json({ url: link.URL });
 });
 
 // post-routes middleware
