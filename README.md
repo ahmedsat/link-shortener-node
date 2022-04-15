@@ -9,6 +9,6 @@ it won't start from beginning.
 
 * [X] ~~*use authenticationsMiddleware only on specific routes*~~ [2022-04-15]
 * [ ] links controller
-  * [ ] link owner only can update
-  * [ ] link owner only can delete
+  * [X] ~~*link owner only can update*~~ [2022-04-15]
+  * [X] ~~*link owner only can delete*~~ [2022-04-15]
   * [ ] private links

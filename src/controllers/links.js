@@ -41,16 +41,20 @@ const getOneLink = async (req, res) => {
 };
 
 const updateLink = async (req, res) => {
-  const link = await Link.findByIdAndUpdate(req.params.id, req.body, {
+  let searchQuery = { _id: req.params.id, owner: req.user.id };
+  console.log(searchQuery);
+  const link = await Link.findOneAndUpdate(searchQuery, req.body, {
     runValidators: true,
     new: true,
   });
   if (!link) throw new NotFoundError("cant find this link");
+
   res.status(StatusCodes.OK).json(link);
 };
 
 const deleteLink = async (req, res) => {
-  const link = await Link.findByIdAndDelete(req.params.id);
+  let searchQuery = { _id: req.params.id, owner: req.user.id };
+  const link = await Link.findOneAndDelete(searchQuery);
   if (!link) throw new NotFoundError("cant find this link");
   res.status(StatusCodes.OK).json(link);
 };

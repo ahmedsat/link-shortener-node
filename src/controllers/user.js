@@ -20,10 +20,7 @@ const login = async (req, res) => {
     username: { $regex: username, $options: "i" },
     password,
   });
-  if (!user)
-    res
-      .status(StatusCodes.UNAUTHORIZED)
-      .json("username or password is invalid");
+  if (!user) throw new NotFoundError("UNAUTHORIZED, please login");
   const token = jwt.sign({ id: user._id, username }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
